@@ -44,7 +44,7 @@ namespace SyrDoorMats
     public static class CostToMoveIntoCellPatch
     {
         [HarmonyPostfix]
-        public static void CostToMoveIntoCell_Postfix(ref int __result, Pawn_PathFollower __instance, Pawn pawn, IntVec3 c)
+        public static void CostToMoveIntoCell_Postfix(ref float __result, Pawn_PathFollower __instance, Pawn pawn, IntVec3 c)
         {
             if (DoorMatsSettings.slowdown > 0 && pawn != null && (pawn.IsColonist || pawn.IsPrisonerOfColony))
             {
@@ -59,7 +59,7 @@ namespace SyrDoorMats
                 Building_DoorMat building_DoorMat = pawn.Map.thingGrid.ThingAt<Building_DoorMat>(c);
                 if (building_DoorMat != null)
                 {
-                    __result += DoorMatsSettings.slowdown;
+                    __result += (float)DoorMatsSettings.slowdown;
                 }
             }
         }
